@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b1224">
+<meta name="description" content="Somzy System: Project Awakening — your personal RPG-inspired growth dashboard.">
+<link rel="manifest" href="manifest.json">
+<title>SOMZY SYSTEM — Project Awakening</title>
+<style>
+:root{--bg:#08101f;--panel:#101d33;--panel2:#15243d;--line:#263957;--blue:#62c8ff;--gold:#f0c76a;--cream:#f4f0e6;--muted:#a8b6ca;--green:#63d6a0;--red:#ff8c8c}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 85% 0%,#1b3150 0,transparent 34%),var(--bg);color:var(--cream);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;padding-bottom:86px}
+header{padding:20px 16px 12px;max-width:900px;margin:auto}.eyebrow{color:var(--gold);font-size:11px;letter-spacing:2px;font-weight:800}.top{display:flex;justify-content:space-between;align-items:center;gap:12px}h1{font-size:25px;line-height:1.1;margin:5px 0}h2{font-size:18px;margin:0 0 12px}h3{font-size:15px;margin:0 0 6px}.sub{color:var(--muted);font-size:12px}.pill{border:1px solid #456184;border-radius:99px;padding:5px 9px;color:var(--blue);font-size:11px;font-weight:800}
+main{max-width:900px;margin:auto;padding:0 14px}.screen{display:none}.screen.active{display:block}.card{background:linear-gradient(145deg,rgba(21,36,61,.97),rgba(13,25,44,.97));border:1px solid var(--line);border-radius:17px;padding:15px;margin:12px 0;box-shadow:0 10px 28px #0002}.hero{border-color:#456184;background:linear-gradient(130deg,#142a49,#101a2e 70%)}.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}.stat{background:#09172a99;border:1px solid #29405e;border-radius:12px;padding:10px}.stat b{display:block;font-size:22px;color:var(--gold)}.stat span{font-size:11px;color:var(--muted)}
+.progress{height:9px;background:#26364d;border-radius:99px;overflow:hidden}.progress i{display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--gold));width:0%}
+button,.btn{border:1px solid #456184;background:#17304e;color:var(--cream);padding:10px 12px;border-radius:11px;font-weight:700;cursor:pointer;font-size:13px}button.primary{background:linear-gradient(90deg,#17618a,#22507a);border-color:#5ab7e9}button.ghost{background:transparent}button:disabled{opacity:.45}
+nav{position:fixed;bottom:0;left:0;right:0;background:#08101ff2;backdrop-filter:blur(14px);border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:8px 4px max(8px,env(safe-area-inset-bottom));z-index:5}
+nav button{background:transparent;border:0;color:var(--muted);padding:7px 5px;font-size:10px;min-width:0;flex:1}nav button.active{color:var(--gold)}nav span{display:block;font-size:18px;margin-bottom:2px}
+.quest{display:flex;gap:10px;align-items:flex-start;padding:12px 0;border-bottom:1px solid #263957}.quest:last-child{border:0}.quest input{width:20px;height:20px;accent-color:#55c9ff;margin-top:3px}.quest .details{flex:1}.quest small{display:block;color:var(--muted)}.xp{color:var(--gold);font-weight:800;font-size:12px;white-space:nowrap}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.attr{background:#0b192c;border:1px solid #263957;padding:11px;border-radius:12px}.attr strong{font-size:12px}.attr small{display:block;color:var(--muted);font-size:11px;margin:3px 0 8px}
+input[type=text],input[type=date],textarea,select{width:100%;background:#09172a;border:1px solid #334967;color:var(--cream);border-radius:10px;padding:11px;font:inherit;margin:5px 0 10px}textarea{min-height:90px;resize:vertical}label{font-size:12px;color:var(--muted)}.listline{padding:10px 0;border-bottom:1px solid #263957}.listline:last-child{border:0}.badge{display:inline-block;border:1px solid #456184;border-radius:99px;padding:3px 8px;color:var(--gold);font-size:10px;font-weight:800}.muted{color:var(--muted)}.notice{font-size:12px;color:var(--muted);background:#0a192b;border-left:3px solid var(--blue);padding:10px;border-radius:7px}.big{font-size:30px;font-weight:850;color:var(--gold)}.actions{display:flex;gap:8px;flex-wrap:wrap}.actions button{flex:1}
+footer{text-align:center;color:#74849a;font-size:10px;padding:20px}
+@media(min-width:650px){.stats{grid-template-columns:repeat(4,1fr)}.grid{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body>
+<header>
+ <div class="top"><div><div class="eyebrow">PERSONAL DEVELOPMENT OPERATING SYSTEM</div><h1>SOMZY SYSTEM</h1><div class="sub">PROJECT AWAKENING · 90-DAY JOURNEY</div></div><div class="pill" id="statusPill">E-RANK · LV 01</div></div>
+</header>
+<main>
+<section id="home" class="screen active">
+ <div class="card hero">
+  <div class="row"><div><div class="eyebrow">PLAYER PROFILE</div><h2 id="playerName">SOMZY</h2><div class="sub">THE AWAKENING BEGINS</div></div><div style="font-size:38px">✦</div></div>
+  <div class="stats">
+   <div class="stat"><b id="rank">E</b><span>CURRENT RANK</span></div>
+   <div class="stat"><b id="level">01</b><span>PLAYER LEVEL</span></div>
+   <div class="stat"><b id="xp">0</b><span>TOTAL XP</span></div>
+   <div class="stat"><b id="streak">0</b><span>DAY STREAK</span></div>
+  </div>
+  <div style="margin-top:15px" class="row"><span class="sub">NEXT RANK PROGRESS</span><strong id="rankProgressText" class="sub">0 / 1,000 XP</strong></div>
+  <div class="progress"><i id="rankProgress"></i></div>
+ </div>
+ <div class="card">
+  <div class="row"><h2>Today's system status</h2><span class="badge" id="todayDate"></span></div>
+  <div class="row"><div><div class="big" id="todayPercent">0%</div><div class="sub">DAILY QUEST COMPLETION</div></div><div style="text-align:right"><div class="big" id="todayEarned">0</div><div class="sub">XP EARNED TODAY</div></div></div>
+  <div class="progress" style="margin-top:12px"><i id="todayProgress"></i></div>
+ </div>
+ <div class="card"><h2>Six core attributes</h2><div id="homeAttributes" class="grid"></div></div>
+ <div class="card"><h2>System message</h2><p id="systemMessage">Your journey begins with one deliberate action. Choose today's missions and build steadily.</p><div class="notice">Hard mode means honest effort and accountability — never sacrificing sleep, health or safety.</div></div>
+</section>
+<section id="quests" class="screen">
+ <div class="card"><div class="row"><h2>Daily quest board</h2><span class="badge">HARD MODE</span></div><p class="sub">Complete a mission once per day to earn its XP. Unchecked missions do not award XP.</p><div id="questList"></div><div class="row" style="margin-top:12px"><strong>Daily total</strong><strong id="questTotal" style="color:var(--gold)">0 / 110 XP</strong></div></div>
+ <div class="card"><h2>Custom mission</h2><label>Mission name</label><input id="customName" type="text" placeholder="e.g. Practise video editing"><label>XP reward (1–30)</label><input id="customXP" type="text" inputmode="numeric" value="10"><button class="primary" onclick="addCustomQuest()">Add mission</button></div>
+</section>
+<section id="attributes" class="screen">
+ <div class="card"><h2>Attribute status</h2><p class="sub">These scores represent logged practice, not your worth or ability as a person.</p><div id="attributeList"></div></div>
+ <div class="card"><h2>Skill tree</h2><p class="sub">Build one primary skill at a time. Mark a skill as practised to record progress.</p><div id="skills"></div></div>
+</section>
+<section id="departments" class="screen">
+ <div class="card"><h2>Spiritual development</h2><label>Today's Bible reading / passage</label><input id="biblePassage" type="text" placeholder="Book and chapter"><label>Reflection or prayer notes</label><textarea id="spiritualNote" placeholder="What did I learn or want to reflect on?"></textarea><button class="primary" onclick="saveJournal()">Save reflection</button><div id="journalStatus" class="sub" style="margin-top:8px"></div></div>
+ <div class="card"><h2>Health & wellbeing</h2><div class="notice">Use this to support wellbeing, not to judge or restrict yourself. Rest and regular meals matter.</div><label>Sleep last night (hours)</label><input id="sleepHours" type="text" inputmode="decimal" placeholder="e.g. 8"><label>Movement / activity</label><input id="movement" type="text" placeholder="e.g. 20-minute walk"><label>Wellbeing note</label><textarea id="wellbeingNote" placeholder="How am I feeling today?"></textarea><button class="primary" onclick="saveWellbeing()">Save wellbeing log</button></div>
+ <div class="card"><h2>Business & creator department</h2><p class="sub">Somzy StoryLab — original AI cinematic storytelling.</p><label>Current project</label><input id="projectName" type="text" placeholder="e.g. The Lost Heir"><label>Next production action</label><textarea id="projectTask" placeholder="e.g. Finish character reference prompts"></textarea><button class="primary" onclick="saveProject()">Save project</button><div id="projectStatus" class="sub"></div></div>
+</section>
+<section id="boss" class="screen">
+ <div class="card"><div class="row"><h2>Weekly boss missions</h2><span class="badge">SUNDAY REVIEW</span></div><p class="sub">Aim to complete four of these six missions each week. Adjust when work or life gets demanding.</p><div id="bossList"></div></div>
+ <div class="card"><h2>Weekly reflection</h2><textarea id="weeklyNote" placeholder="What went well? What was difficult? What will I change next week?"></textarea><button class="primary" onclick="saveWeekly()">Save weekly review</button><div id="weeklyStatus" class="sub"></div></div>
+ <div class="card"><h2>90-day awakening</h2><div class="row"><strong>Program progress</strong><strong id="programDays">Day 1 of 90</strong></div><div class="progress" style="margin:10px 0"><i id="programProgress"></i></div><div class="listline"><span class="badge">PHASE 1</span> Foundation Arc · Days 1–30</div><div class="listline"><span class="badge">PHASE 2</span> Development Arc · Days 31–60</div><div class="listline"><span class="badge">PHASE 3</span> Awakening Arc · Days 61–90</div><p class="sub">Program dates: 16 Nov 2026 – 13 Feb 2027. The day counter follows your device date.</p></div>
+</section>
+<section id="settings" class="screen">
+ <div class="card"><h2>System settings</h2><label>Player name</label><input id="settingName" type="text" value="SOMZY"><label>Wake-up target</label><input id="wakeTime" type="text" placeholder="e.g. 5:30 AM"><label>Sleep target</label><input id="sleepTime" type="text" placeholder="e.g. 10:00 PM"><label>Primary skill focus</label><input id="focusSkill" type="text" value="AI storytelling"><button class="primary" onclick="saveSettings()">Save settings</button></div>
+ <div class="card"><h2>Achievements</h2><div id="achievements" class="sub">No achievements unlocked yet. Complete missions to earn them.</div></div>
+ <div class="card"><h2>Backup & restore</h2><p class="sub">Export a backup regularly. Your data is stored on this device only.</p><div class="actions"><button onclick="exportData()">Export backup</button><button onclick="document.getElementById('restoreFile').click()">Restore backup</button><input id="restoreFile" type="file" accept="application/json" hidden onchange="importData(event)"></div></div>
+ <div class="card"><h2>Reset application data</h2><p class="sub">This permanently clears locally saved progress on this device. Export a backup first.</p><button class="ghost" onclick="resetData()">Reset all data</button></div>
+</section>
+<footer>SOMZY SYSTEM · PROJECT AWAKENING · Your progress belongs to you.</footer>
+</main>
+<nav>
+ <button class="active" data-screen="home" onclick="showScreen('home',this)"><span>⌂</span>Home</button>
+ <button data-screen="quests" onclick="showScreen('quests',this)"><span>☷</span>Quests</button>
+ <button data-screen="attributes" onclick="showScreen('attributes',this)"><span>✧</span>Skills</button>
+ <button data-screen="departments" onclick="showScreen('departments',this)"><span>◈</span>Life</button>
+ <button data-screen="boss" onclick="showScreen('boss',this)"><span>⚔</span>Boss</button>
+ <button data-screen="settings" onclick="showScreen('settings',this)"><span>⚙</span>Settings</button>
+</nav>
+<script>
+const KEY='somzy_awakening_v1';
+const defaults={
+ name:'SOMZY',xp:0,missions:{},custom:[],boss:{},journals:[],wellbeing:[],weekly:[],
+ attributes:{'Faith':0,'Intelligence':0,'Career':0,'Financial intelligence':0,'Vitality':0,'Character':0},
+ skills:[{name:'AI storytelling',done:0},{name:'AI video generation',done:0},{name:'Video editing',done:0},{name:'Digital marketing',done:0},{name:'Communication',done:0},{name:'Financial literacy',done:0}],
+ settings:{wake:'',sleep:'',focus:'AI storytelling'},project:{name:'',task:''},achievements:[]
+};
+let data=load();
+const baseQuests=[
+ ['Spiritual mission','Prayer and meaningful Bible study',20,'Faith'],
+ ['Intellectual mission','Read or learn something useful',15,'Intelligence'],
+ ['Career mission','Practise your primary skill when time allows',20,'Career'],
+ ['Financial mission','Learn or review one money-management concept',15,'Financial intelligence'],
+ ['Health mission','Support wellbeing with rest, nourishment or movement',15,'Vitality'],
+ ['Character mission','Practise patience, communication or healthy boundaries',15,'Character'],
+ ['Night reflection','Reflect and prepare for tomorrow',10,'Character']
+];
+const bosses=[
+ ['Faith boss','Complete five meaningful spiritual-study sessions','Faith'],
+ ['Discipline boss','Follow your essential routine on most days','Character'],
+ ['Creator boss','Publish or complete one original StoryLab video','Career'],
+ ['Skill boss','Learn and apply one new creative technique','Career'],
+ ['Finance boss','Review spending and learn one financial concept','Financial intelligence'],
+ ['Personality boss','Practise patient communication and healthy boundaries','Character']
+];
+function load(){try{return {...structuredClone(defaults),...JSON.parse(localStorage.getItem(KEY)||'{}')}}catch(e){return JSON.parse(JSON.stringify(defaults))}}
+function save(){localStorage.setItem(KEY,JSON.stringify(data));render()}
+function today(){let d=new Date();return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+function dayKey(){return today()}
+function rankFor(x){if(x>=9000)return'S';if(x>=7000)return'A';if(x>=4500)return'B';if(x>=2500)return'C';if(x>=1000)return'D';return'E'}
+function nextRank(x){return [1000,2500,4500,7000,9000].find(v=>x<v)||9000}
+function levelFor(x){return Math.floor(x/200)+1}
+function dayNumber(){let start=new Date('2026-11-16T00:00:00');let now=new Date(today()+'T00:00:00');return Math.max(1,Math.min(90,Math.floor((now-start)/86400000)+1))}
+function dailyItems(){return [...baseQuests.map((q,i)=>({id:'base'+i,name:q[0],desc:q[1],xp:q[2],attr:q[3]})),...(data.custom||[]).map(q=>({...q,attr:'Career'}))]}
+function completedToday(){return data.missions[dayKey()]||[]}
+function completeQuest(id,checked){let done=completedToday();let q=dailyItems().find(x=>x.id===id);if(!q)return;if(checked&&!done.includes(id)){done.push(id);data.xp+=q.xp;data.attributes[q.attr]=Math.min(100,(data.attributes[q.attr]||0)+2)}else if(!checked&&done.includes(id)){done=done.filter(x=>x!==id);data.xp=Math.max(0,data.xp-q.xp);data.attributes[q.attr]=Math.max(0,(data.attributes[q.attr]||0)-2)}data.missions[dayKey()]=done;checkAchievements();save()}
+function addCustomQuest(){let n=document.getElementById('customName').value.trim(),xp=Math.max(1,Math.min(30,parseInt(document.getElementById('customXP').value)||10));if(!n)return alert('Enter a mission name.');data.custom.push({id:'custom'+Date.now(),name:n,desc:'Personal mission',xp,attr:'Career'});document.getElementById('customName').value='';save()}
+function render(){
+ let x=data.xp||0,r=rankFor(x),next=nextRank(x),prev=({E:0,D:1000,C:2500,B:4500,A:7000,S:9000})[r];
+ document.getElementById('playerName').textContent=data.name||'SOMZY';document.getElementById('rank').textContent=r;document.getElementById('level').textContent=String(levelFor(x)).padStart(2,'0');document.getElementById('xp').textContent=x.toLocaleString();document.getElementById('statusPill').textContent=r+'-RANK · LV '+String(levelFor(x)).padStart(2,'0');
+ document.getElementById('rankProgressText').textContent=x.toLocaleString()+' / '+next.toLocaleString()+' XP';document.getElementById('rankProgress').style.width=Math.min(100,(x-prev)/(next-prev)*100)+'%';
+ let items=dailyItems(),done=completedToday(),earned=items.filter(q=>done.includes(q.id)).reduce((s,q)=>s+q.xp,0),pct=Math.round(done.length/items.length*100);
+ document.getElementById('todayDate').textContent=new Date().toLocaleDateString();document.getElementById('todayPercent').textContent=pct+'%';document.getElementById('todayEarned').textContent=earned;document.getElementById('todayProgress').style.width=pct+'%';document.getElementById('questTotal').textContent=earned+' / '+items.reduce((s,q)=>s+q.xp,0)+' XP';
+ document.getElementById('questList').innerHTML=items.map(q=>`<div class="quest"><input type="checkbox" ${done.includes(q.id)?'checked':''} onchange="completeQuest('${q.id}',this.checked)"><div class="details"><strong>${esc(q.name)}</strong><small>${esc(q.desc)}</small></div><span class="xp">+${q.xp} XP</span></div>`).join('');
+ let attrs=Object.entries(data.attributes);let attrHtml=attrs.map(([n,v])=>`<div class="attr"><strong>${esc(n)}</strong><small>Practice score · ${v}/100</small><div class="progress"><i style="width:${v}%"></i></div></div>`).join('');
+ document.getElementById('homeAttributes').innerHTML=attrs.map(([n,v])=>`<div class="attr"><strong>${esc(n)}</strong><small>${v}/100</small><div class="progress"><i style="width:${v}%"></i></div></div>`).join('');
+ document.getElementById('attributeList').innerHTML=attrs.map(([n,v])=>`<div class="listline"><div class="row"><strong>${esc(n)}</strong><span class="sub">${v}/100</span></div><div class="progress"><i style="width:${v}%"></i></div></div>`).join('');
+ document.getElementById('skills').innerHTML=data.skills.map((s,i)=>`<div class="listline"><div class="row"><strong>${esc(s.name)}</strong><span class="badge">${s.done} practice logs</span></div><button style="margin-top:7px" onclick="trainSkill(${i})">Log practice</button></div>`).join('');
+ document.getElementById('bossList').innerHTML=bosses.map((b,i)=>`<div class="quest"><input type="checkbox" ${data.boss[i]?'checked':''} onchange="toggleBoss(${i},this.checked)"><div class="details"><strong>${esc(b[0])}</strong><small>${esc(b[1])}</small></div><span class="xp">Weekly</span></div>`).join('');
+ let dn=dayNumber();document.getElementById('programDays').textContent='Day '+dn+' of 90';document.getElementById('programProgress').style.width=(dn/90*100)+'%';
+ document.getElementById('streak').textContent=calcStreak();
+ document.getElementById('achievements').innerHTML=data.achievements.length?data.achievements.map(a=>`<div class="listline">🏅 ${esc(a)}</div>`).join(''):'No achievements unlocked yet. Complete missions to earn them.';
+ document.getElementById('settingName').value=data.name||'SOMZY';document.getElementById('wakeTime').value=data.settings.wake||'';document.getElementById('sleepTime').value=data.settings.sleep||'';document.getElementById('focusSkill').value=data.settings.focus||'AI storytelling';
+ document.getElementById('projectName').value=data.project.name||'';document.getElementById('projectTask').value=data.project.task||'';
+}
+function calcStreak(){let n=0,d=new Date(today()+'T00:00:00');for(let i=0;i<90;i++){let k=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');if((data.missions[k]||[]).length===0)break;n++;d.setDate(d.getDate()-1)}return n}
+function checkAchievements(){let all=Object.values(data.missions).flat();let candidates=[];if(all.length>=1)candidates.push('First Awakening');if(all.length>=7)candidates.push('Seven Missions Completed');if(Object.keys(data.missions).length>=7)candidates.push('Consistent Builder');if(data.xp>=1000)candidates.push('D-Rank Candidate');data.achievements=[...new Set([...data.achievements,...candidates])]}
+function toggleBoss(i,v){data.boss[i]=v; if(v){let a=bosses[i][2];data.attributes[a]=Math.min(100,(data.attributes[a]||0)+3)}save()}
+function trainSkill(i){data.skills[i].done++;let a=data.xp;data.xp+=5;data.attributes['Career']=Math.min(100,data.attributes['Career']+2);checkAchievements();save();alert('Practice recorded: +5 XP.')}
+function saveJournal(){data.journals.push({date:today(),passage:document.getElementById('biblePassage').value,note:document.getElementById('spiritualNote').value});save();document.getElementById('journalStatus').textContent='Reflection saved on this device.'}
+function saveWellbeing(){data.wellbeing.push({date:today(),sleep:document.getElementById('sleepHours').value,movement:document.getElementById('movement').value,note:document.getElementById('wellbeingNote').value});save();alert('Wellbeing log saved.')}
+function saveProject(){data.project={name:document.getElementById('projectName').value,task:document.getElementById('projectTask').value};save();document.getElementById('projectStatus').textContent='Project details saved.'}
+function saveWeekly(){data.weekly.push({date:today(),note:document.getElementById('weeklyNote').value,boss:{...data.boss}});save();document.getElementById('weeklyStatus').textContent='Weekly review saved.'}
+function saveSettings(){data.name=document.getElementById('settingName').value.trim()||'SOMZY';data.settings={wake:document.getElementById('wakeTime').value,sleep:document.getElementById('sleepTime').value,focus:document.getElementById('focusSkill').value};save();alert('Settings saved.')}
+function exportData(){let blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='somzy-system-backup-'+today()+'.json';a.click();URL.revokeObjectURL(a.href)}
+function importData(e){let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let incoming=JSON.parse(r.result);if(!incoming.xp===undefined)throw Error();data={...defaults,...incoming};save();alert('Backup restored.')}catch(err){alert('That backup file could not be read.')}};r.readAsText(f)}
+function resetData(){if(confirm('Clear all SOMZY SYSTEM data on this device? Export a backup first.')){localStorage.removeItem(KEY);data=JSON.parse(JSON.stringify(defaults));save()}}
+function showScreen(id,btn){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));if(btn)btn.classList.add('active');window.scrollTo(0,0)}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+if('serviceWorker' in navigator && location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(()=>{});
+render();
+</script>
+</body></html>
